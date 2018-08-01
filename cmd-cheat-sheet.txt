@@ -1,0 +1,14 @@
+/opt/sap/cron_scripts/dump_databases_to_test.pl svp_lm
+
+tail -n100 /opt/sap/ASE-16_0/install/CPDB1.log
+grep -i "sort_data" /opt/sap/ASE-16_0/install/CPDB1.log
+
+ll | grep "performance"
+
+cp myfile /path/to/newfile/myfile_bk #creating a backup of a file
+
+cat /proc/version #returns Linux version
+
+grep MemTotal /proc/meminfo #returns total memory amount
+
+grep "model name" /proc/cpuinfo #returns CPU info

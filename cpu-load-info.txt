@@ -1,0 +1,5 @@
+cat /proc/loadavg
+
+iostat -c #cpu average load
+
+iostat -xtc #cpu average load plus disk performance information

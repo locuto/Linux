@@ -1,0 +1,2 @@
+ #delete all files older than 150 days
+ find /home/sybase/db_backups/ -mindepth 1 -mtime +150 -delete

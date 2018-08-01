@@ -1,0 +1,48 @@
+#####################################################################################
+## Sybase Cron:                                                                      #
+##     Please schedule all Sybase related jobs in this cron                          #
+######################################################################################
+##minute hour day month dayofweek command                                            #
+######################################################################################
+#
+###Backup IQ datatbase weekly
+###05 16 * * 0 /opt/sybase/cron_scripts/backup_IQ_database.pl > /opt/sybase/cron_scripts/cron_logs/backup_IQ_database.log 2>&1
+#######################################################################################
+#
+###38 09 * * 0 /opt/sybase/cron_scripts/purge_IQ_server.sh > /opt/sybase/cron_scripts/cron_logs/purge_IQ_server.log 2>&1
+###* * * * * /opt/sybase/cron_scripts/monitor_server_up.pl > /opt/sybase/cron_scripts/cron_logs/monitor_server_up.log 2>&1
+###* * * * * /opt/sybase/cron_scripts/monitor_errorlog.pl CPIQ > /opt/sybase/cron_scripts/cron_logs/monitor_errorlog.log 2>&1
+#########################################################
+#####Reload Schedule#####
+00 06,09,10,12,14,16,18,20 * * * /opt/sybase/cron_scripts/resync_batch_replicate_tables_lm.pl > /opt/sybase/cron_scripts/cron_logs/resync_batch_replicate_tables_lm.log 2>&1
+30 06,09,10,12,14,16,18,20 * * * /opt/sybase/cron_scripts/resync_batch_replicate_tables.pl > /opt/sybase/cron_scripts/cron_logs/resync_batch_replicate_tables.log 2>&1
+#########################################################
+18 06 * * 1 /opt/sybase/cron_scripts/load_cmf_data.pl > /opt/sybase/cron_scripts/cron_logs/load_cmf_data.log 2>&1
+08 06 * * * /opt/sybase/cron_scripts/load_cmf_data_lm.pl > /opt/sybase/cron_scripts/cron_logs/load_cmf_data_lm.log 2>&1
+00 06 * * 0 /opt/sybase/cron_scripts/load_canada_post_table.pl > /opt/sybase/cron_scripts/cron_logs/load_canada_post_table.log 2>&1
+##
+30 03 * * 1 /opt/sybase/cron_scripts/rpt_days_to_pay_generation_lm.pl > /opt/sybase/cron_scripts/cron_logs/rpt_days_to_pay_generation_lm.log 2>&1
+30 04 * * 1 /opt/sybase/cron_scripts/rpt_days_to_pay_generation_cp.pl > /opt/sybase/cron_scripts/cron_logs/rpt_days_to_pay_generation_cp.log 2>&1
+##
+00 03 * * 1 /opt/sybase/cron_scripts/load_rpt_invoices_waybill_data.pl > /opt/sybase/cron_scripts/cron_logs/load_rpt_invoices_waybill_data.log 2>&1
+00 04 * * 1 /opt/sybase/cron_scripts/load_rpt_invoices_shipment_data.pl > /opt/sybase/cron_scripts/cron_logs/load_rpt_invoices_shipment_data.log 2>&1
+##
+###00 04 * * 1-6 /opt/sybase/cron_scripts/load_rev_hist.pl > /opt/sybase/cron_scripts/cron_logs/load_rev_hist.log 2>&1
+###Data from Toronto Sort is moved twice a day 10AM and 2AM
+##00 13,04 * * 1-6 /opt/sybase/cron_scripts/load_stats_data.pl > /opt/sybase/cron_scripts/cron_logs/load_stats_data.log 2>&1
+###Data from Montreal Sort is moved once a day at 11AM. It was slowing their server down at night time.
+###Night schedule enabled on Mar 2, 2011. requested by Ron and ok'ed by Doug.
+##05 14,04 * * 1-6 /opt/sybase/cron_scripts/load_stats_data_mtl.pl > /opt/sybase/cron_scripts/cron_logs/load_stats_data_mtl.log 2>&1
+#########################################################
+### Remove SLG Files ##
+00 22,12,17 * * * /opt/sybase/cron_scripts/remove_slg_files.sh > /opt/sybase/cron_scripts/cron_logs/remove_slg_files.log 2>&1
+#########################################################
+### Monitor Cost Analysis Completion
+### And Send Email to Person Who Started
+### The Cost Analysis
+#########################################################
+##10,20,30,40,50,00 * * * * /opt/sybase/cron_scripts/monitor_cost_analysis_completion.pl > /opt/sybase/cron_scripts/cron_logs/monitor_cost_analysis_completion.log 2>&1
+#####Purge Schedule####################################################
+00 23 * * * /opt/sybase/cron_scripts/purge_tttl_ev_event.pl > /opt/sybase/cron_scripts/cron_logs/purge_tttl_ev_event.log 2>&1
+
+#########################################################

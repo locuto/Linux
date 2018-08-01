@@ -1,0 +1,21 @@
+######################################################################################
+## Sybase Cron:                                                                      #
+##     Please schedule all Sybase related jobs in this cron                          #
+######################################################################################
+##minute hour day month dayofweek command                                            #
+######################################################################################
+#
+##Monitor Rep Server Errorlog
+#* * * * * /opt/sybase/cron_scripts/monitor_errorlog.pl hqvsybrep3 > /opt/sybase/cron_scripts/cron_logs/monitor_errorlog.log 2>&1
+#
+## Monitor Rep Server
+00 * * * * /opt/sybase/cron_scripts/monitor_rep_server_up.pl > /opt/sybase/cron_scripts/cron_logs/monitor_rep_server_up.log 2>&1
+#
+##Monitor Who Is Down
+00 * * * * /opt/sybase/cron_scripts/monitor_who_is_down.pl > /opt/sybase/cron_scripts/cron_logs/monitor_who_is_down.log 2>&1
+##Resume down connection to skip, debug and troubleshoot only
+00 10 * * * /opt/sybase/cron_scripts/check_disk_space.pl > /opt/sybase/cron_scripts/cron_logs/check_disk_space.log 2>&1
+##Check Replication Status through rs_ticket...
+30 11 * * * /opt/sybase/cron_scripts/healthCheck.pl > /opt/sybase/cron_scripts/cron_logs/healthCheck.log 2>&1
+##Following checks for any db not yet setup for replication also
+##00 13 * * 0 /opt/sybase/cron_scripts/healthCheck.pl all > /opt/sybase/cron_scripts/cron_logs/healthCheck_all.log 2>&1
