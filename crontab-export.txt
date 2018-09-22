@@ -54,6 +54,7 @@
 00 04 * * * /opt/sap/cron_scripts/purge_lmscan_tttl_batchdown.pl > /opt/sap/cron_scripts/cron_logs/purge_lmscan_tttl_batchdown.log 2>&1
 00 04 * * * /opt/sap/cron_scripts/purge_cpscan_tttl_batchdown.pl > /opt/sap/cron_scripts/cron_logs/purge_cpscan_tttl_batchdown.log 2>&1
 00 03 * * * /opt/sap/cron_scripts/purge_rev_hist_bcxref2.pl > /opt/sap/cron_scripts/cron_logs/purge_rev_hist_bcxref2.log 2>&1
+00 04 * * * /opt/sap/cron_scripts/purge_cmf_data_lm_purge_pr_waybills_log.pl > /opt/sap/cron_scripts/cron_logs/purge_cmf_data_lm_purge_pr_waybills_log.log 2>&1
 ##
 ###Purge the ever growing log due to 1608 errors
 ###30 01 * * * /opt/sap/cron_scripts/purge_CPDB2_error_log.sh > /opt/sap/cron_scripts/cron_logs/purge_CPDB2_error_log.log 2>&1
@@ -236,6 +237,8 @@
 45 * * * * /opt/sap/cron_scripts/lh_actual_dpts.pl > /opt/sap/cron_scripts/cron_logs/lh_actual_dpts.log 2>&1
 ##
 20 00 * * * /opt/sap/cron_scripts/update_shipper_pickup_timestamp.pl > /opt/sap/cron_scripts/cron_logs/update_shipper_pickup_timestamp.log 2>&1
+##
+00 6,7,8,9,10,11 * * * /opt/sap/cron_scripts/linehaul_data_execute_dly_late_sort_scans.pl > /opt/sap/cron_scripts/cron_logs/linehaul_data_execute_dly_late_sort_scans.log 2>&1
 ##
 ######################################Following is the misc jobs area that runs infrequently#####################################
 ###Run ps -ef to see what processes are running that may be causing slowness

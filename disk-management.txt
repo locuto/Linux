@@ -1,0 +1,11 @@
+sudo lvdisplay
+sudo pvdisplay
+sudo vgdisplay
+sudo lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL
+
+sudo shutdown -r now # Have to reboot to see the new storage apparently
+sudo lsblk # Look for the new storage at the bottom of the list
+sudo pvresize -v /dev/mapper/mpatha
+sudo pvcreate -v /dev/mapper/mpath? # ? denotes new path letter
+sudo vgextend -v vg /dev/mapper/mpath? # ? denotes new path letter
+sudo lvcreate -n dev42 --size 200G vg # ?? denotes new dev number
