@@ -1,0 +1,113 @@
+#!/bin/sh
+#only replace the sybase path & name of ASE & backup server in #below 3 steps.
+
+SYBASE=/opt/sap
+SERVER=CPSYBTEST
+SERVER1=CPSYBTEST_BS
+
+# Set environment variables.
+
+. $SYBASE/SYBASE.sh
+# The name of the script is..
+
+NAME=`basename $0`
+
+start() {
+
+SYBASE_START=$"Starting ${NAME} service: "
+
+$SU -l sybase -c ". $SYBASE/SYBASE.sh; $SYBASE/$SYBASE_ASE/install/startserver \
+
+-f $SYBASE/$SYBASE_ASE/install/RUN_${SERVER} > /dev/null"
+
+$SU -l sybase -c ". $SYBASE/SYBASE.sh; $SYBASE/$SYBASE_ASE/install/startserver \
+
+-f $SYBASE/$SYBASE_ASE/install/RUN_${SERVER1} > /dev/null"
+
+ret=$?
+
+if [ $ret -eq 0 ]
+
+then
+
+echo "$SYBASE_START Success."
+
+else
+
+echo "$SYBASE_START Failed!"
+
+exit 1
+
+fi
+
+}
+
+stop() {
+
+echo -n $"Stopping ${NAME} service: "
+
+$SU -l sybase -c ". $SYBASE/SYBASE.sh; isql -S $SERVER -U sa -P " < \
+
+$SYBASE/$SYBASE_ASE/upgrade/shutdown.sql > /dev/null"
+
+#             echo -n $"Stopping ${NAME} service: "
+
+$SU -l sybase -c ". $SYBASE/SYBASE.sh; isql -S $SERVER1 -U sa -P " < \
+
+$SYBASE/$SYBASE_ASE/upgrade/shutdown.sql > /dev/null"
+
+ret=$?
+
+if [ $ret -eq 0 ]
+
+then
+
+echo "Success."
+
+else
+
+echo "Failed!"
+
+exit 1
+
+fi
+
+}
+
+restart() {
+
+stop
+
+start
+
+}
+
+case "$1″ in
+
+start)
+
+start
+
+;;
+
+stop)
+
+stop
+
+;;
+
+restart)
+
+restart
+
+;;
+
+*)
+
+echo $"Usage: $0 {start|stop|restart}"
+
+exit 1
+
+esac
+
+exit 0

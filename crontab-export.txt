@@ -31,7 +31,7 @@
 ##
 ### Sync points_no_ranges between companies for interco points
 ##
-00 05 * * * /opt/sap/cron_scripts/pnr_sync_interco.pl > /opt/sap/cron_scripts/cron_logs/pnr_sync_interco.log 2>&1
+##00 05 * * * /opt/sap/cron_scripts/pnr_sync_interco.pl > /opt/sap/cron_scripts/cron_logs/pnr_sync_interco.log 2>&1
 ##
 ##Update consignee_city in tttl_dr about every twenty minutes
 30 01 * * 1-5 /opt/sap/cron_scripts/update_consignee_city.pl > /opt/sap/cron_scripts/cron_logs/update_consignee_city.log 2>&1
@@ -71,6 +71,9 @@
 ###Monitor IOs every 10 minutes
 00,10,20,30,40,50 * * * 1-5 /opt/sap/cron_scripts/monitor_ios.pl > /opt/sap/cron_scripts/cron_logs/monitor_ios.log 2>&1
 ##
+###Monitor Server Health every 5 minutes
+*/5 * * * 1-5 /opt/sap/cron_scripts/monitor_server.pl > /opt/sap/cron_scripts/cron_logs/monitor_server.log 2>&1
+##
 ###Monitor cronjob for commented every day
 00 09 * * * /opt/sap/cron_scripts/monitor_cronjobs.pl crontab > /opt/sap/cron_scripts/cron_logs/monitor_cronjobs.log 2>&1
 ##
@@ -96,6 +99,9 @@
 ###Update points_not_served table every night
 00 23 * * * /opt/sap/cron_scripts/points_not_served.pl > /opt/sap/cron_scripts/cron_logs/points_not_served.log 2>&1
 ##
+###Move cmfaudit to cmfaudit_history for both CP and LM
+50 00 * * * /opt/sap/cron_scripts/cmfaudit_move_history_lm_cp.pl > /opt/sap/cron_scripts/cron_logs/cmfaudit_move_history_lm_cp.log 2>&1
+##
 ###Run scan_compliance_update every day for Canpar and Loomis
 00 01 * * * /opt/sap/cron_scripts/scan_compliance_update.pl > /opt/sap/cron_scripts/cron_logs/scan_compliance_update.log 2>&1
 ##
@@ -108,7 +114,7 @@
 ###Run performance monitoring report three times a day
 ###00 23,01,02,03,04,07,10,13,17,19,21 * * 1-6 /opt/sap/cron_scripts/monitor_ase_performance.pl > /opt/sap/cron_scripts/cron_logs/monitor_ase_performance.log 2>&1
 ###*/2 02,03,04,05,06,07 * * 1-6 /opt/sap/cron_scripts/monitor_ase_performance.pl > /opt/sap/cron_scripts/cron_logs/monitor_ase_performance.log 2>&1
-###*/2 02,03,04,05,06,07 * * 1-6 /opt/sap/cron_scripts/mon_current_processes.pl > /opt/sap/cron_scripts/mon_current_processes.log 2>&1
+*/5 07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23 * * 1-6 /opt/sap/cron_scripts/mon_current_processes.pl > /opt/sap/cron_scripts/mon_current_processes.log 2>&1
 #
 55 23 * * * /opt/sap/cron_scripts/AddCorrExpiredUpdate.pl > /opt/sap/cron_scripts/cron_logs/AddCorrExpiredUpdate.log 2>&1
 ##

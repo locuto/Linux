@@ -1,0 +1,49 @@
+#Attention! Run all commands as root!
+#First, create a symbolic link allowing sendmail to run the notification enqueuer with the following command:
+ln -s /opt/notification/scripts/ack_enqueuer.pl /etc/smrsh/.
+
+#Making sendmail use your smtp server
+#Edit Sendmail Make file /etc/mail/sendmail.mc
+vim /etc/mail/sendmail.mc
+
+#Remove Comment for the following lines. To remove the coment just get rid of the 'dnl' word at the beginning. Replace smtp.your.provider. Example:
+#Do not use IP Address. It must be a FQDN.
+#Beware of your DNS MX records causing issues.
+dnl define(`SMART_HOST', `smtp.canpar.com')dnl
+define(`SMART_HOST', `smtp.canpar.com')dnl
+
+#still in this file find the string below
+dnl DAEMON_OPTIONS(`Port=smtp,Addr=127.0.0.1, Name=MTA')dnl 
+#and replace with the code below. This might not be necessary if you don't want to allow receiving email from anywhere. 
+DAEMON_OPTIONS(`Port=smtp, Name=MTA')dnl
+
+#next, update the aliases
+newaliases
+
+#Regenerate SendMail Configuration File /etc/mail/sendmail.cf
+/etc/mail/make
+
+#Add Authentication (Optional)
+#If the SMTP relay requires authentication then do the following steps.
+#Change to mail configuration directory
+cd /etc/mail
+#Create /etc/mail/authinfo
+vim /etc/mail/authinfo
+#Add a plain text line with SMTP FQDN and Credentials. Replace smtp.domain.com, USERNAME and PASSWORD
+AuthInfo:smtp.domain.com "U:USERNAME" "P:PASSWORD" "M:PLAIN"
+#Create a hash map
+makemap hash authinfo < authinfo
+#Add Authinfo to sendmail config
+vim /etc/mail/sendmail.mc
+FEATURE(`authinfo')
+#Regenerate SendMail Configuration File /etc/mail/sendmail.cf
+/etc/mail/make
+
+#Restart the service with the appropriate command for your flavor and version of Linux.
+service sendmail restart
+
+#testing
+type: "sendmail rleandro@canpar" without quotes
+then type: "Subject: Test" without quotes
+
+#troublehooting
