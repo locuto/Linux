@@ -1,0 +1,7 @@
+subscription-manager register --username --password  --auto-attach
+subscription-manager list --available --all
+
+
+yum --releasever=6.3 update #to update to specific version
+
+yum update #to update all server to the most recent version

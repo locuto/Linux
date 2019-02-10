@@ -1,2 +1,9 @@
- #delete all files older than 150 days
- find /home/sybase/db_backups/ -mindepth 1 -mtime +150 -delete
+#delete all files older than 150 days
+find /home/sybase/db_backups/ -mindepth 1 -mtime +150 -delete
+
+#copy files to another server
+scp -p /home/sybase/db_backups/cmf_data.dmp sybase@10.3.1.165:/home/sybase/db_backups
+
+sudo du -h -a /var/log | sort -n -r | head -n 10 #to find the largest files in a folder
+sudo du -h -a /var/tmp | sort -n -r | head -n 10 #to find the largest files in a folder
+sudo du -a / | sort -n -r | head -n 10

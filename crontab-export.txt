@@ -246,6 +246,8 @@
 ##
 00 6,7,8,9,10,11 * * * /opt/sap/cron_scripts/linehaul_data_execute_dly_late_sort_scans.pl > /opt/sap/cron_scripts/cron_logs/linehaul_data_execute_dly_late_sort_scans.log 2>&1
 ##
+00 06 * * * /opt/sap/cron_scripts/monitor-disk-space.pl > /opt/sap/cron_scripts/cron_logs/monitor-disk-space.log 2>&1
+##
 ######################################Following is the misc jobs area that runs infrequently#####################################
 ###Run ps -ef to see what processes are running that may be causing slowness
 ####* * * * * /opt/sap/cron_scripts/monitor_spid.pl >> /opt/sap/cron_scripts/cron_logs/monitor_spid.log 2>&1

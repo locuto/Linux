@@ -3,9 +3,19 @@ sudo pvdisplay
 sudo vgdisplay
 sudo lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL
 
-sudo shutdown -r now # Have to reboot to see the new storage apparently
+echo 1>/sys/class/block/sde/device/rescan #specify the correct disk. THis will only work to identify changes in current devices
+echo 1>/sys/class/scsi_device/X:X:X:X/device/block/device/rescan
+
+sudo shutdown -r now # Have to reboot to see the new storage apparently. Do this only if the previous command did not work
 sudo lsblk # Look for the new storage at the bottom of the list
-sudo pvresize -v /dev/mapper/mpatha
-sudo pvcreate -v /dev/mapper/mpath? # ? denotes new path letter
+sudo pvresize -v /dev/mapper/mpatha # run this to expand the volume's physical space in case more space was added to the existing machine
+sudo pvcreate -v /dev/mapper/mpath? # ? denotes new path letter. Run this to create a new volume for a new drive added to the machine
 sudo vgextend -v vg /dev/mapper/mpath? # ? denotes new path letter
 sudo lvcreate -n dev42 --size 200G vg # ?? denotes new dev number
+
+#to get rid of physical volumes
+sudo vgreduce my_volume_group /dev/hda1 #run this to remove a physical volume from a volume group
+sudo umount /mnt/lvstuff #Run if the physical volumes is mounted
+sudo lvremove /dev/vgpool/lvstuff #remove all logical volumes from the physical volume
+sudo vgremove vgpool #Remove all volume groups associated to that physical volume
+sudo pvremove /dev/mapper/mpathb #Finally remove the physical volume

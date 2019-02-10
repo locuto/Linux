@@ -7,7 +7,8 @@ ll | grep "performance"
 
 cp myfile /path/to/newfile/myfile_bk #creating a backup of a file
 
-cat /proc/version #returns Linux version
+cat /proc/version #returns Linux build version
+cat /etc/redhat-release #returns Linux release
 
 grep MemTotal /proc/meminfo #returns total memory amount
 
