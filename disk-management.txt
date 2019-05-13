@@ -1,21 +1,42 @@
+ls -la /sys/class/scsi_host/
+ls -la /sys/class/scsi_device/
+ls -la /sys/class/scsi_disk/
+
+sudo lsblk -S #to get the list of disk devices and their respective ids
+sudo lsscsi -v
+ls -la /sys/class/scsi_disk/ #to get the disk hosts #run as root
+
+ps aux | grep "D|PID" #get info about processes that are performing IO. These processes cannot be killed and will block any attempts to extend the physical volume. If there any process with "D" status flag, you'll probably have to reboot the server to get rid of them.
+
+sudo multipath -ll #shows info about the current multipaths and disks configured. For each disk returned, turn on the rescan flag as shown below
+
+sudo su
+echo 1 > /sys/block/sdd/device/rescan #rescan disk sdd
+echo 1 > /sys/block/sdb/device/rescan #rescan disk sdb
+echo 1 > /sys/block/sdc/device/rescan #rescan disk sdc
+echo 1 > /sys/block/sde/device/rescan #rescan disk sde
+
+multipathd resize map mpatha #resizes the multipath itself. After this, resize the physical volume accordingly
+
 sudo lvdisplay
 sudo pvdisplay
 sudo vgdisplay
 sudo lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL
-
-echo 1>/sys/class/block/sde/device/rescan #specify the correct disk. THis will only work to identify changes in current devices
-echo 1>/sys/class/scsi_device/X:X:X:X/device/block/device/rescan
 
 sudo shutdown -r now # Have to reboot to see the new storage apparently. Do this only if the previous command did not work
 sudo lsblk # Look for the new storage at the bottom of the list
 sudo pvresize -v /dev/mapper/mpatha # run this to expand the volume's physical space in case more space was added to the existing machine
 sudo pvcreate -v /dev/mapper/mpath? # ? denotes new path letter. Run this to create a new volume for a new drive added to the machine
 sudo vgextend -v vg /dev/mapper/mpath? # ? denotes new path letter
-sudo lvcreate -n dev42 --size 200G vg # ?? denotes new dev number
+sudo lvcreate -n dev43 --size 200G vg # ?? denotes new dev number
+chown sybase /dev/vg/dev41
 
 #to get rid of physical volumes
 sudo vgreduce my_volume_group /dev/hda1 #run this to remove a physical volume from a volume group
-sudo umount /mnt/lvstuff #Run if the physical volumes is mounted
-sudo lvremove /dev/vgpool/lvstuff #remove all logical volumes from the physical volume
+sudo umount /mnt/lvstuff #Run if the physical volume is mounted
+sudo lvremove vg #remove all logical volumes from the physical volume
+sudo lvremove vg/logdev4 #remove specific logical volumes from the physical volume
 sudo vgremove vgpool #Remove all volume groups associated to that physical volume
 sudo pvremove /dev/mapper/mpathb #Finally remove the physical volume
+
+

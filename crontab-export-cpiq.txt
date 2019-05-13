@@ -16,12 +16,16 @@
 #####Reload Schedule#####
 00 06,09,10,12,14,16,18,20 * * * /opt/sybase/cron_scripts/resync_batch_replicate_tables_lm.pl > /opt/sybase/cron_scripts/cron_logs/resync_batch_replicate_tables_lm.log 2>&1
 30 06,09,10,12,14,16,18,20 * * * /opt/sybase/cron_scripts/resync_batch_replicate_tables.pl > /opt/sybase/cron_scripts/cron_logs/resync_batch_replicate_tables.log 2>&1
+00 06,12,18,00 * * * /opt/sybase/cron_scripts/resync_flash_data.pl > /opt/sybase/cron_scripts/cron_logs/resync_flash_data.log 2>&1
+00,30 * * * * /opt/sybase/cron_scripts/resync_cod_cheque_history.pl > /opt/sybase/cron_scripts/cron_logs/resync_cod_cheque_history.log 2>&1
 00 * * * * /opt/sybase/cron_scripts/load_ara_audit_lm.pl > /opt/sybase/cron_scripts/cron_logs/load_ara_audit_lm.log 2>&1
 00 * * * * /opt/sybase/cron_scripts/load_ara_audit_cp.pl > /opt/sybase/cron_scripts/cron_logs/load_ara_audit_cp.log 2>&1
 #########################################################
 18 06 * * 1 /opt/sybase/cron_scripts/load_cmf_data.pl > /opt/sybase/cron_scripts/cron_logs/load_cmf_data.log 2>&1
 08 06 * * * /opt/sybase/cron_scripts/load_cmf_data_lm.pl > /opt/sybase/cron_scripts/cron_logs/load_cmf_data_lm.log 2>&1
 00 06 * * 0 /opt/sybase/cron_scripts/load_canada_post_table.pl > /opt/sybase/cron_scripts/cron_logs/load_canada_post_table.log 2>&1
+00 * * * * /opt/sybase/cron_scripts/load_cmf_data_ilpo.pl > /opt/sybase/cron_scripts/cron_logs/load_cmf_data_ilpo.log 2>&1
+00 05 * * * /opt/sybase/cron_scripts/load_cmf_data_iloodaily.pl > /opt/sybase/cron_scripts/cron_logs/load_cmf_data_iloodaily.log 2>&1
 ##
 30 03 * * * /opt/sybase/cron_scripts/rpt_days_to_pay_generation_lm.pl > /opt/sybase/cron_scripts/cron_logs/rpt_days_to_pay_generation_lm.log 2>&1
 30 04 * * *  /opt/sybase/cron_scripts/rpt_days_to_pay_generation_cp.pl > /opt/sybase/cron_scripts/cron_logs/rpt_days_to_pay_generation_cp.log 2>&1

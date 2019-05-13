@@ -105,6 +105,9 @@
 ###Run scan_compliance_update every day for Canpar and Loomis
 00 01 * * * /opt/sap/cron_scripts/scan_compliance_update.pl > /opt/sap/cron_scripts/cron_logs/scan_compliance_update.log 2>&1
 ##
+###Run scan_compliance_stats every day for Canpar and Loomis
+00 05 * * * /opt/sap/cron_scripts/scan_compliance_stats.pl > /opt/sap/cron_scripts/cron_logs/scan_compliance_stats.log 2>&1
+##
 ###Refresh srvc_times_ground_nr
 00 03 6 * * /opt/sap/cron_scripts/srvc_times_ground_nr_refresh.pl > /opt/sap/cron_scripts/cron_logs/srvc_times_ground_nr_refresh.log 2>&1
 ##
@@ -139,6 +142,9 @@
 ##15 02 21 * * /opt/sap/cron_scripts/mpr_pickup_final_costing_proc.pl > /opt/sap/cron_scripts/cron_logs/mpr_pickup_final_costing_proc.log 2>&1
 #
 ##35 03 * * * /opt/sap/cron_scripts/mpr_init_all_flags.pl > /opt/sap/cron_scripts/cron_logs/mpr_init_all_flags.log 2>&1
+###Upload MPR payroll hourly
+00 23 * * 2 /opt/sap/cron_scripts/mpr_payroll_hourly.sh > /opt/sap/cron_scripts/cron_logs/mpr_payroll_hourly.log 2>&1
+##
 ##================================================MPR PROCS===========================================
 
 ## ============================================== Loomis MPR_DATA_LM PROCS ==================================
