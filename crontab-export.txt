@@ -131,6 +131,8 @@
 ##
 00 04 * * * /opt/sap/cron_scripts/add_new_customers_to_pr_tables.pl > /opt/sap/cron_scripts/cron_logs/add_new_customers_to_pr_tables.log 2>&1
 #
+00 * * * * /opt/sap/cron_scripts/copy_h_barcode_scans_from_lmscan.pl > /opt/sap/cron_scripts/cron_logs/copy_h_barcode_scans_from_lmscan.log 2>&1
+#
 ### ============================================== CANPAR MPR PROCS ============================
 00 12 * * * /opt/sap/cron_scripts/vp_alltotals.pl > /opt/sap/cron_scripts/cron_logs/vp_alltotals.log 2>&1
 00 01 16 * * /opt/sap/cron_scripts/vp_alltotals_terminal.pl > /opt/sap/cron_scripts/cron_logs/vp_alltotals_terminal.log 2>&1
@@ -143,7 +145,7 @@
 #
 ##35 03 * * * /opt/sap/cron_scripts/mpr_init_all_flags.pl > /opt/sap/cron_scripts/cron_logs/mpr_init_all_flags.log 2>&1
 ###Upload MPR payroll hourly
-00 23 * * 2 /opt/sap/cron_scripts/mpr_payroll_hourly.sh > /opt/sap/cron_scripts/cron_logs/mpr_payroll_hourly.log 2>&1
+00 23 * * 1 /opt/sap/cron_scripts/mpr_payroll_hourly.sh > /opt/sap/cron_scripts/cron_logs/mpr_payroll_hourly.log 2>&1
 ##
 ##================================================MPR PROCS===========================================
 
@@ -177,8 +179,8 @@
 05 00 1 * * /opt/sap/cron_scripts/generate_sybase_disabled_user_list.pl > /opt/sap/cron_scripts/cron_logs/generate_sybase_disabled_user_list.log 2>&1
 ##
 ###Weekly Audit Report Emailed directly to Frank Orourke
-##00 03 * * 1 /opt/sap/cron_scripts/weekly_audit_rpt.pl > /opt/sap/cron_scripts/cron_logs/weekly_audit_rpt.log 2>&1
-##15 02,05,08,13,16,20,23 * * * /opt/sap/cron_scripts/switch_audit_table.pl > /opt/sap/cron_scripts/cron_logs/switch_audit_table.log 2>&1
+00 03 * * 1 /opt/sap/cron_scripts/weekly_audit_rpt.pl > /opt/sap/cron_scripts/cron_logs/weekly_audit_rpt.log 2>&1
+15 02,05,08,13,16,20,23 * * * /opt/sap/cron_scripts/switch_audit_table.pl > /opt/sap/cron_scripts/cron_logs/switch_audit_table.log 2>&1
 ##
 ###svp_proc processing
 ##00,39 02-23 * * * /opt/sap/cron_scripts/svp_proc_parcelwork_update.pl > /opt/sap/cron_scripts/cron_logs/svp_proc_parcelwork_update.log 2>&1

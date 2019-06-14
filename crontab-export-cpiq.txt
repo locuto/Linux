@@ -12,6 +12,7 @@
 ###38 09 * * 0 /opt/sybase/cron_scripts/purge_IQ_server.sh > /opt/sybase/cron_scripts/cron_logs/purge_IQ_server.log 2>&1
 ###* * * * * /opt/sybase/cron_scripts/monitor_server_up.pl > /opt/sybase/cron_scripts/cron_logs/monitor_server_up.log 2>&1
 ###* * * * * /opt/sybase/cron_scripts/monitor_errorlog.pl CPIQ > /opt/sybase/cron_scripts/cron_logs/monitor_errorlog.log 2>&1
+00 18 * * * /opt/sybase/cron_scripts/iq_database_size_report.pl > /opt/sybase/cron_scripts/cron_logs/iq_database_size_report.log 2>&1
 #########################################################
 #####Reload Schedule#####
 00 06,09,10,12,14,16,18,20 * * * /opt/sybase/cron_scripts/resync_batch_replicate_tables_lm.pl > /opt/sybase/cron_scripts/cron_logs/resync_batch_replicate_tables_lm.log 2>&1
@@ -20,6 +21,7 @@
 00,30 * * * * /opt/sybase/cron_scripts/resync_cod_cheque_history.pl > /opt/sybase/cron_scripts/cron_logs/resync_cod_cheque_history.log 2>&1
 00 * * * * /opt/sybase/cron_scripts/load_ara_audit_lm.pl > /opt/sybase/cron_scripts/cron_logs/load_ara_audit_lm.log 2>&1
 00 * * * * /opt/sybase/cron_scripts/load_ara_audit_cp.pl > /opt/sybase/cron_scripts/cron_logs/load_ara_audit_cp.log 2>&1
+00 04 * * * /opt/sybase/cron_scripts/resync_cp_revhst_bcxref.pl > /opt/sybase/cron_scripts/cron_logs/resync_cp_revhst_bcxref.log 2>&1
 #########################################################
 18 06 * * 1 /opt/sybase/cron_scripts/load_cmf_data.pl > /opt/sybase/cron_scripts/cron_logs/load_cmf_data.log 2>&1
 08 06 * * * /opt/sybase/cron_scripts/load_cmf_data_lm.pl > /opt/sybase/cron_scripts/cron_logs/load_cmf_data_lm.log 2>&1

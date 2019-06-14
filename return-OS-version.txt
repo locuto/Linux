@@ -1,0 +1,2 @@
+cat /etc/*-release #OS version
+uname -1 #Kernel version
