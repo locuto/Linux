@@ -1,5 +1,7 @@
-subscription-manager register --username amerk71 --password canpar --auto-attach
-subscription-manager list --available --all
+sudo subscription-manager register --username amerk71 --password canpar --auto-attach
+sudo subscription-manager list --available --all
+sudo subscription-manager list --consumed
+sudo subscription-manager status
 
 
 yum --releasever=6.3 update #to update to specific version
