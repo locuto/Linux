@@ -15,39 +15,54 @@
 00 18 * * * /opt/sybase/cron_scripts/iq_database_size_report.pl > /opt/sybase/cron_scripts/cron_logs/iq_database_size_report.log 2>&1
 #########################################################
 #####Reload Schedule#####
-00 06,09,10,12,14,16,18,20 * * * /opt/sybase/cron_scripts/resync_batch_replicate_tables_lm.pl > /opt/sybase/cron_scripts/cron_logs/resync_batch_replicate_tables_lm.log 2>&1
-30 06,09,10,12,14,16,18,20 * * * /opt/sybase/cron_scripts/resync_batch_replicate_tables.pl > /opt/sybase/cron_scripts/cron_logs/resync_batch_replicate_tables.log 2>&1
+00 04,06,08,10,12,14,16,18,20 * * * /opt/sybase/cron_scripts/resync_batch_replicate_tables_lm.pl > /opt/sybase/cron_scripts/cron_logs/resync_batch_replicate_tables_lm.log 2>&1
+30 04,06,08,10,12,14,16,18,20 * * * /opt/sybase/cron_scripts/resync_batch_replicate_tables.pl > /opt/sybase/cron_scripts/cron_logs/resync_batch_replicate_tables.log 2>&1
 00 06,12,18,00 * * * /opt/sybase/cron_scripts/resync_flash_data.pl > /opt/sybase/cron_scripts/cron_logs/resync_flash_data.log 2>&1
 00,30 * * * * /opt/sybase/cron_scripts/resync_cod_cheque_history.pl > /opt/sybase/cron_scripts/cron_logs/resync_cod_cheque_history.log 2>&1
 00 * * * * /opt/sybase/cron_scripts/load_ara_audit_lm.pl > /opt/sybase/cron_scripts/cron_logs/load_ara_audit_lm.log 2>&1
 00 * * * * /opt/sybase/cron_scripts/load_ara_audit_cp.pl > /opt/sybase/cron_scripts/cron_logs/load_ara_audit_cp.log 2>&1
-00 04 * * * /opt/sybase/cron_scripts/resync_cp_revhst_bcxref.pl > /opt/sybase/cron_scripts/cron_logs/resync_cp_revhst_bcxref.log 2>&1
-#########################################################
+00 04 * * * /opt/sybase/cron_scripts/resync_lm_revhstz.pl > /opt/sybase/cron_scripts/cron_logs/resync_lm_revhstz.log 2>&1
+00 02 * * * /opt/sybase/cron_scripts/resync_lm_revhst_tables.pl > /opt/sybase/cron_scripts/cron_logs/resynch_lm_revhst_tables.log 2>&1
+00 02 * * * /opt/sybase/cron_scripts/resync_cp_revhst_tables.pl > /opt/sybase/cron_scripts/cron_logs/resynch_cp_revhst_tables.log 2>&1
+00 04 * * * /opt/sybase/cron_scripts/resync_qreceive.pl > /opt/sybase/cron_scripts/cron_logs/resync_qreceive.log 2>&1
+00 04 * * * /opt/sybase/cron_scripts/resynch_manifest_service_code.pl > /opt/sybase/cron_scripts/cron_logs/resynch_manifest_service_code.log 2>&1
+00 04,06,08,10,12,14,16,18,20 * * * /opt/sybase/cron_scripts/resync_lm_CounterBilling.pl > /opt/sybase/cron_scripts/cron_logs/resync_lm_CounterBilling.log 2>&1
+20 06,09,10,12,14,16,18,20 * * * /opt/sybase/cron_scripts/resync_cp_tttl_ma_barcode.pl > /opt/sybase/cron_scripts/cron_logs/resync_cp_tttl_ma_barcode.log 2>&1
+00 06 * * 1 /opt/sybase/cron_scripts/resync_pd_stops_pcs.pl > /opt/sybase/cron_scripts/cron_logs/resync_pd_stops_pcs.log 2>&1
+00 03 * * * /opt/sybase/cron_scripts/resync_cp_cwlink.pl > /opt/sybase/cron_scripts/cron_logs/resync_cp_cwlink.log 2>&1
+00 03 * * * /opt/sybase/cron_scripts/resync_lm_cwlink.pl > /opt/sybase/cron_scripts/cron_logs/resync_lm_cwlink.log 2>&1
+30 03,04,06,08,10,12,14,16,18,20,22 * * * /opt/sybase/cron_scripts/resync_cp_tttl_ev_event.pl > /opt/sybase/cron_scripts/cron_logs/resync_cp_tttl_ev_event.log 2>&1
+*/17 * * * * /opt/sybase/cron_scripts/resync_cp_tttl_pa_parcel.pl > /opt/sybase/cron_scripts/cron_logs/resync_cp_tttl_pa_parcel.log 2>&1
+00 04,06,08,10,12,14,16,18,20 * * * /opt/sybase/cron_scripts/resync_lm_tttl_pa_parcel.pl > /opt/sybase/cron_scripts/cron_logs/resync_lm_tttl_pa_parcel.log 2>&1
+30 04,06,08,10,12,14,16,18,20 * * * /opt/sybase/cron_scripts/resync_cp_tttl_ma_cod.pl > /opt/sybase/cron_scripts/cron_logs/resync_cp_tttl_ma_cod.log 2>&1
+30 04,06,08,10,12,14,16,18,20 * * * /opt/sybase/cron_scripts/resync_cp_tttl_ma_manifest.pl > /opt/sybase/cron_scripts/cron_logs/resync_cp_tttl_ma_manifest.log 2>&1
+00 07 * * * /opt/sybase/cron_scripts/resync_traceclaim_tables.pl > /opt/sybase/cron_scripts/cron_logs/resync_traceclaim_tables.log 2>&1
+00 07 * * * /opt/sybase/cron_scripts/resync_cr_payment_type_tables.pl > /opt/sybase/cron_scripts/cron_logs/resync_cr_payment_type_tables.log 2>&1
+00 05 * * * /opt/sybase/cron_scripts/resync_tfi_division.pl > /opt/sybase/cron_scripts/cron_logs/resync_tfi_division.log 2>&1
 18 06 * * 1 /opt/sybase/cron_scripts/load_cmf_data.pl > /opt/sybase/cron_scripts/cron_logs/load_cmf_data.log 2>&1
 08 06 * * * /opt/sybase/cron_scripts/load_cmf_data_lm.pl > /opt/sybase/cron_scripts/cron_logs/load_cmf_data_lm.log 2>&1
 00 06 * * 0 /opt/sybase/cron_scripts/load_canada_post_table.pl > /opt/sybase/cron_scripts/cron_logs/load_canada_post_table.log 2>&1
 00 * * * * /opt/sybase/cron_scripts/load_cmf_data_ilpo.pl > /opt/sybase/cron_scripts/cron_logs/load_cmf_data_ilpo.log 2>&1
 00 05 * * * /opt/sybase/cron_scripts/load_cmf_data_iloodaily.pl > /opt/sybase/cron_scripts/cron_logs/load_cmf_data_iloodaily.log 2>&1
+30 04,06,08,10,12,14,16,18,20 * * * /opt/sybase/cron_scripts/load_cmf_data_ilparcel.pl > /opt/sybase/cron_scripts/cron_logs/load_cmf_data_ilparcel.log 2>&1
+* * * * * /opt/sybase/cron_scripts/excel_to_csv.sh > /opt/sybase/cron_scripts/cron_logs/excel_to_csv.log 2>&1
+#########################################################
 ##
 30 03 * * * /opt/sybase/cron_scripts/rpt_days_to_pay_generation_lm.pl > /opt/sybase/cron_scripts/cron_logs/rpt_days_to_pay_generation_lm.log 2>&1
 30 04 * * *  /opt/sybase/cron_scripts/rpt_days_to_pay_generation_cp.pl > /opt/sybase/cron_scripts/cron_logs/rpt_days_to_pay_generation_cp.log 2>&1
 ##
-00 03 * * * /opt/sybase/cron_scripts/load_rpt_invoices_waybill_data.pl > /opt/sybase/cron_scripts/cron_logs/load_rpt_invoices_waybill_data.log 2>&1
-00 04 * * * /opt/sybase/cron_scripts/load_rpt_invoices_shipment_data.pl > /opt/sybase/cron_scripts/cron_logs/load_rpt_invoices_shipment_data.log 2>&1
+00 05 * * * /opt/sybase/cron_scripts/load_rpt_invoices_waybill_data.pl > /opt/sybase/cron_scripts/cron_logs/load_rpt_invoices_waybill_data.log 2>&1
+15 05 * * * /opt/sybase/cron_scripts/load_rpt_invoices_shipment_data.pl > /opt/sybase/cron_scripts/cron_logs/load_rpt_invoices_shipment_data.log 2>&1
 ##
 00 07 * * * /opt/sybase/cron_scripts/lh_matrix_hops_generation.pl > /opt/sybase/cron_scripts/cron_logs/lh_matrix_hops_generation.log 2>&1
 00 07 * * * /opt/sybase/cron_scripts/lm_lh_matrix_hops_generation.pl > /opt/sybase/cron_scripts/cron_logs/lm_lh_matrix_hops_generation.log 2>&1
 00 07 * * * /opt/sybase/cron_scripts/hub_scan_pcs_generation.pl > /opt/sybase/cron_scripts/cron_logs/hub_scan_pcs_generation.log 2>&1
 ##
-###00 04 * * 1-6 /opt/sybase/cron_scripts/load_rev_hist.pl > /opt/sybase/cron_scripts/cron_logs/load_rev_hist.log 2>&1
-###Data from Toronto Sort is moved twice a day 10AM and 2AM
-##00 13,04 * * 1-6 /opt/sybase/cron_scripts/load_stats_data.pl > /opt/sybase/cron_scripts/cron_logs/load_stats_data.log 2>&1
-###Data from Montreal Sort is moved once a day at 11AM. It was slowing their server down at night time.
-###Night schedule enabled on Mar 2, 2011. requested by Ron and ok'ed by Doug.
-##05 14,04 * * 1-6 /opt/sybase/cron_scripts/load_stats_data_mtl.pl > /opt/sybase/cron_scripts/cron_logs/load_stats_data_mtl.log 2>&1
 #########################################################
 ### Remove SLG Files ##
 00 22,12,17 * * * /opt/sybase/cron_scripts/remove_slg_files.sh > /opt/sybase/cron_scripts/cron_logs/remove_slg_files.log 2>&1
+### Purge jobs
+00 00 * * * /opt/sybase/cron_scripts/purge_tttl_ev_event.pl > /opt/sybase/cron_scripts/cron_logs/purge_tttl_ev_event.log 2>&1
 #########################################################
 ### Monitor Cost Analysis Completion
 ### And Send Email to Person Who Started
