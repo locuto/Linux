@@ -1,1 +1,13 @@
-sudo dmidecode -t1
+sudo dmidecode -t1 #get general info about the system
+sudo dmidecode -t4 #get info about cpu
+
+cat /proc/meminfo
+cat /proc/cpuinfo
+
+sudo lsblk -l #storage information
+
+grep "model name" /proc/cpuinfo #returns CPU info
+
+cat /etc/redhat-release #returns Linux release
+
+sudo uname -a #kernel information

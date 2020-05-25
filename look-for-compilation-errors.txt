@@ -3,7 +3,11 @@ grep -iRl "No such file" /opt/sap/cron_scripts/cron_logs
 grep -iRl "file not found" /opt/sap/cron_scripts/cron_logs
 grep -iRl "denied" /opt/sap/cron_scripts/cron_logs
 grep -iRl "error" /opt/sap/cron_scripts/cron_logs
-grep -iRl "Msg" /opt/sap/cron_scripts/cron_logs
+grep -Rl "Msg" /opt/sap/cron_scripts/cron_logs
+
+tail /opt/sap/ASE-16_0/install/CPDB1.log  -n500 | grep -v "Cannot read, host process disconnected:" | grep -v "extended error information: hostname:  login:" | grep -v "nrpacket: recv, Connection timed out, spid:" | grep -v grep | grep -v "has been written and the previous version has been renamed to" | grep -v "The configuration option 'current audit table' has been changed by 'sa'" | grep -v "extended error information: hostname:" | grep -v "DBCC TRACEON 3604" | grep -v "DBCC TRACEOFF 3604"
+
+tail /opt/sap/ASE-16_0/install/CPDB1.log -n20000 | grep -v grep | grep "2020/04/28" | grep "3154" | grep "killed"
 
 grep -iRl "compilation" /opt/sybase/cron_scripts/cron_logs
 grep -iRl "No such file" /opt/sybase/cron_scripts/cron_logs
@@ -11,6 +15,15 @@ grep -iRl "file not found" /opt/sybase/cron_scripts/cron_logs
 
 grep -iRl "compilation" /opt/sap/cron_scripts/cron_logs ; grep -iRl "No such file" /opt/sap/cron_scripts/cron_logs ; grep -iRl "file not found" /opt/sap/cron_scripts/cron_logs ; grep -iRl "denied" /opt/sap/cron_scripts/cron_logs; grep -iRl "error" /opt/sap/cron_scripts/cron_logs ; grep -iRl "Msg" /opt/sap/cron_scripts/cron_logs
 grep -iRl "compilation" /opt/sybase/cron_scripts/cron_logs ; grep -iRl "No such file" /opt/sybase/cron_scripts/cron_logs ; grep -iRl "file not found" /opt/sybase/cron_scripts/cron_logs ; grep -iRl "denied" /opt/sybase/cron_scripts/cron_logs; grep -iRl "error" /opt/sybase/cron_scripts/cron_logs ; grep -iRl "Msg" /opt/sybase/cron_scripts/cron_logs
+
+select getdate()
+select * from master..sysprocesses
+select * from master..syslocks
+select * from master..syslogshold
+select * from master..systransactions
+go > /opt/sap/server_process.out
+sp_monitorconfig'all'
+go >> /opt/sap/server_process.out
 
 To summarize (non-exhaustively) bash's command operators/separators:
 

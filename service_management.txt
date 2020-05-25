@@ -1,0 +1,3 @@
+#check if service is enabled for auto-start on boot
+systemctl list-unit-files | grep sshd | grep enabled
+
