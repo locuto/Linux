@@ -22,6 +22,7 @@ sudo lvdisplay
 sudo pvdisplay
 sudo vgdisplay
 sudo lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL
+sudo lvmdiskscan
 
 sudo shutdown -r now # Have to reboot to see the new storage apparently. Do this only if the previous command did not work
 sudo lsblk # Look for the new storage at the bottom of the list
@@ -38,5 +39,15 @@ sudo lvremove vg #remove all logical volumes from the physical volume
 sudo lvremove vg/logdev4 #remove specific logical volumes from the physical volume
 sudo vgremove vgpool #Remove all volume groups associated to that physical volume
 sudo pvremove /dev/mapper/mpathb #Finally remove the physical volume
+
+
+#to resize a logical volume
+sudo pvresize -v /dev/sdb #resize the physical volume. You can get the device path from the "pvdisplay" command
+sudo lvextend -L+200G /dev/vgb/db_backups #you can get the logical volume path from the command "lvdisplay"
+sudo mount /dev/vgb/db_backups /opt/sap/db_backups #make sure that the device is mounted
+sudo xfs_growfs /dev/vgb/db_backups #updates the storage info on the OS. Device has to be mounted for this to work
+df -h #checking the new allocated space. Should show the extra space you added
+
+
 
 

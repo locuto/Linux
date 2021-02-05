@@ -1,0 +1,13 @@
+#this procedure is for SAP IQ 16
+
+cd /tmp
+wget http://ftp.gnu.org/gnu/glibc/glibc-2.18.tar.gz
+tar xvzf glibc-2.18.tar.gz
+cd glibc-2.18
+rm -rf glibc-build
+mkdir glibc-build
+unset LD_LIBRARY_PATH #this is necessary if you are installing the libraries in a folder referenced by this ENV
+cd glibc-build
+../configure --prefix='/usr'
+sudo make
+sudo make install

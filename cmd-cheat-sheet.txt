@@ -16,3 +16,5 @@ grep "model name" /proc/cpuinfo #returns CPU info
 
 sudo mount "//10.3.1.186/Department/Information Technology/DevDump/operations" /opt/sybase/bcp_data/operations -o username=em_process1,password=Canpar_2001,domain=canparnt
 
+###check glibc version
+ldd --version

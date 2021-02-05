@@ -40,6 +40,8 @@
 00 05 * * * /opt/sybase/cron_scripts/resync_tfi_division.pl > /opt/sybase/cron_scripts/cron_logs/resync_tfi_division.log 2>&1
 00 04 * * * /opt/sybase/cron_scripts/resync_lm_manifest_hospital.pl > /opt/sybase/cron_scripts/cron_logs/resync_lm_manifest_hospital.log 2>&1
 00 04 * * * /opt/sybase/cron_scripts/resync_terminal_hospital.pl > /opt/sybase/cron_scripts/cron_logs/resync_terminal_hospital.log 2>&1
+00 04 * * * /opt/sybase/cron_scripts/resync_cp_fuelpct.pl > /opt/sybase/cron_scripts/cron_logs/resync_cp_fuelpct.log 2>&1
+30 05,07,09,11,13,15,17,19,21 * * * /opt/sybase/cron_scripts/resync_lm_cparf06i.pl > /opt/sybase/cron_scripts/cron_logs/resync_lm_cparf06i.log 2>&1
 18 06 * * 1 /opt/sybase/cron_scripts/load_cmf_data.pl > /opt/sybase/cron_scripts/cron_logs/load_cmf_data.log 2>&1
 08 06 * * * /opt/sybase/cron_scripts/load_cmf_data_lm.pl > /opt/sybase/cron_scripts/cron_logs/load_cmf_data_lm.log 2>&1
 00 06 * * 0 /opt/sybase/cron_scripts/load_canada_post_table.pl > /opt/sybase/cron_scripts/cron_logs/load_canada_post_table.log 2>&1
@@ -48,22 +50,20 @@
 30 04,06,08,10,12,14,16,18,20 * * * /opt/sybase/cron_scripts/load_cmf_data_ilparcel.pl > /opt/sybase/cron_scripts/cron_logs/load_cmf_data_ilparcel.log 2>&1
 00 01 * * * /opt/sybase/cron_scripts/load_cmf_data_ilstop.pl > /opt/sybase/cron_scripts/cron_logs/load_cmf_data_ilstop.log 2>&1
 00 02 * * * /opt/sybase/cron_scripts/load_cmf_data_ilpoxref.pl > /opt/sybase/cron_scripts/cron_logs/load_cmf_data_ilpoxref.log 2>&1
+00 03 * * * /opt/sybase/cron_scripts/load_EigenCCPayments.pl > /opt/sybase/cron_scripts/cron_logs/load_EigenCCPayments.log 2>&1
 * * * * * /opt/sybase/cron_scripts/excel_to_csv.sh > /opt/sybase/cron_scripts/cron_logs/excel_to_csv.log 2>&1
 #########################################################
-##
 30 03 * * * /opt/sybase/cron_scripts/rpt_days_to_pay_generation_lm.pl > /opt/sybase/cron_scripts/cron_logs/rpt_days_to_pay_generation_lm.log 2>&1
 30 04 * * *  /opt/sybase/cron_scripts/rpt_days_to_pay_generation_cp.pl > /opt/sybase/cron_scripts/cron_logs/rpt_days_to_pay_generation_cp.log 2>&1
-##
 00 05 * * * /opt/sybase/cron_scripts/gen_invoice_shipment_cp.pl > /opt/sybase/cron_scripts/cron_logs/gen_invoice_shipment.log 2>&1
 45 04 * * * /opt/sybase/cron_scripts/gen_invoice_shipment_lm.pl > /opt/sybase/cron_scripts/cron_logs/gen_lm_invoice_shipment.log 2>&1
-##
 00 07 * * * /opt/sybase/cron_scripts/lh_matrix_hops_generation.pl > /opt/sybase/cron_scripts/cron_logs/lh_matrix_hops_generation.log 2>&1
 00 07 * * * /opt/sybase/cron_scripts/lm_lh_matrix_hops_generation.pl > /opt/sybase/cron_scripts/cron_logs/lm_lh_matrix_hops_generation.log 2>&1
 00 07 * * * /opt/sybase/cron_scripts/hub_scan_pcs_generation.pl > /opt/sybase/cron_scripts/cron_logs/hub_scan_pcs_generation.log 2>&1
-##
+00 07 * * * /opt/sybase/cron_scripts/gen_interco.pl > /opt/sybase/cron_scripts/cron_logs/gen_interco.log 2>&1
 #########################################################
 ### Remove SLG Files ##
-00 22,12,17 * * * /opt/sybase/cron_scripts/remove_slg_files.sh > /opt/sybase/cron_scripts/cron_logs/remove_slg_files.log 2>&1
+00 * * * * /opt/sybase/cron_scripts/remove_slg_files.sh > /opt/sybase/cron_scripts/cron_logs/remove_slg_files.log 2>&1
 ### Purge jobs
 00 00 * * * /opt/sybase/cron_scripts/purge_tttl_ev_event.pl > /opt/sybase/cron_scripts/cron_logs/purge_tttl_ev_event.log 2>&1
 #########################################################

@@ -1,0 +1,1 @@
+nohup /opt/sap/cron_scripts/load_databases_mpr.pl -s CPDB2 > /opt/sap/cron_scripts/load_databases_mpr.log 2> /opt/sap/cron_scripts/load_databases_mpr.stderr < /dev/null &

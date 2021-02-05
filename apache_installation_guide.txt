@@ -28,7 +28,7 @@ sudo firewall-cmd --permanent --add-port=443/tcp
 
 sudo firewall-cmd ––reload
 
-Step 6: Configure Virtual Hosts on CentOS 7 (optional). Virtual hosts are different websites that you run from the same server. Each website needs its own configuration file. Make sure these configuration files use the .conf extension, and save them in the /etc/httpd/conf.d/ directory. There are a couple of best practices to use when you’re setting up different websites on the same server:
+Step 6: Configure Virtual Hosts (optional). Virtual hosts are different websites that you run from the same server. Each website needs its own configuration file. Make sure these configuration files use the .conf extension, and save them in the /etc/httpd/conf.d/ directory. There are a couple of best practices to use when you’re setting up different websites on the same server:
 
 Try to use the same naming convention for all your websites. For example:
 
